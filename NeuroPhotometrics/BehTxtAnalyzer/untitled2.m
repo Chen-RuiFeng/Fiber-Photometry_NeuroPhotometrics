@@ -1,0 +1,174 @@
+% area = 1000:3000;
+% figure
+% nexttile
+% plot(FP.Ftd470(area,2))
+% nexttile
+% plot(FP.Ftd470(area,3))
+
+
+% M = [];
+% 
+% for i = [4,6,7]
+% M = [M;FP.EventWindows470{i}];
+% end
+% MS = mean_n_se(M,1)';
+% figure
+% plot(MS(:,1))
+
+% 
+% Inters = {};
+% IntersRD = {};
+% IntersPs = {};
+% M_RD = [];
+% M_Ps = [];
+% for i = 1:7
+% 
+%     Temp = [Beh_txt.Data.(['B_',Beh_txt.AnimalID{i}]).RewardDelivery;Beh_txt.Data.(['B_',Beh_txt.AnimalID{i}]).Pseudo];
+%     M_RD(i)= length(Temp);
+% %     Temp = sort(Temp);
+% %     [~,Itemp,~] = intersect(Temp,Beh_txt.Data.(['B_',Beh_txt.AnimalID{i}]).RewardDelivery);
+% %     Ilist = zeros(size(Temp));
+% %     Ilist(Itemp) = 1;
+% %     Ilist = Ilist(1:end-1);
+% % 
+% %     Inters{i} = Temp(2:end)- Temp(1:end-1);
+% %     IntersRD{i} = Inters{i}.*Ilist;
+% %     M_RD(i) = mean(IntersRD{i}(IntersRD{i}~=0));
+% %     IntersPs{i} = Inters{i}.*~Ilist;
+% %     M_Ps(i) = mean(IntersPs{i}(IntersPs{i}~=0));
+% end
+% Inters = Inters';
+% M_Ps = M_Ps';
+% M_RD = M_RD';
+
+
+% Inters = [];
+% for i = 1:7
+% 
+%     Temp = Beh_txt.Data.(['B_',Beh_txt.AnimalID{i}]).ActiveLP;
+%     Inters(i) = length(Temp);%mean(Temp(2:end)- Temp(1:end-1));
+% end
+% Inters = Inters';
+% Ms = [];
+
+% area = [120:200];
+% figure
+% for i = 1:5
+%     nexttile
+%     plot(M(area,i))
+%     [A,T] = max(M(area,i));
+%     Ts(i) = (T+area(1))/25-10;
+%     As(i) = A;
+% end
+% Srd = [Ts',As'];
+% 
+
+
+
+
+% for i = 1:6
+%     M(:,i) = M(:,i)-mean(M(1:200,i));
+% end
+
+
+% [AACs,AUCs] = AUC_AAC(M,260:500);
+% 
+% K = [AACs,AUCs];
+
+% 
+% close all
+% threshold = 1.5;
+% M = [];
+% Pks=[];
+% freq = [];
+% amp = [];
+% area = 1:250;
+% for i = [4,6,7]
+%     Pks = [];
+%     for ii = 1:size(FP.EventWindows470{i},1)
+% %     figure
+% %     findpeaks(smooth(FP.EventWindows470{i}(ii,1:250)),'MinPeakProminence',threshold)
+%     [Pkss, Locs, W, p] = findpeaks(smooth(FP.EventWindows470{i}(ii,area)),'MinPeakProminence',threshold);
+%     Pks = [Pks;Pkss];
+%     end
+%     amp(i) = mean(Pks);
+%     freq(i) = length(Pks)/(length(area)/25)/size(FP.EventWindows470{i},1);
+% 
+%     
+% end
+% amp = amp';
+% freq = freq';
+
+
+% figure
+% for i = 1:7
+%     nexttile
+%     plot(temp(:,i))
+% end
+
+% threshold = 0.8;
+% MS = [];
+% figure
+% indx = 1;
+% for i = [4:8]
+% MS = [MS,mean(FP.EventWindows470{i},1)'];
+% nexttile
+% plot(MS(:,indx))
+% findpeaks(MS(:,indx),'MinPeakProminence',threshold)
+% [Pkss, Locs, W, p] = findpeaks(MS(:,indx),'MinPeakProminence',threshold);
+% indx = indx+1;
+% end
+% MSS = mean_n_se(M',1);
+
+
+% figure
+% for i = 1:6
+%     nexttile
+%     findpeaks(M(:,i),'MinPeakProminence',0.5)
+% end
+% MS = mean(M(:,[1,2,4,5]),2);
+% figure
+% plot(MS)
+
+% figure
+% for i = 1:7
+% nexttile
+% plot(mean(FP.EventWindows470{2}((i-1)*5+1:i*5,:)))
+% xlim([1,500])
+% 
+% end
+
+
+% MS = [];
+% for i = [3,5,6]
+% MS = [MS,mean(FP.EventWindows470{i})'];
+%  
+% end
+
+area = [250:300];
+figure
+for i = [2,3,4,5,7]
+    MS = mean(FP.EventWindows470{i});
+    nexttile
+    plot(MS(area))
+    [A,T] = max(MS(area));
+    Ts(i) = (T+area(1))/25-10;
+    As(i) = A-MS(area(1));
+end
+Slp = [Ts',As'];
+
+
+
+
+% figure
+% for i=1:6
+%     nexttile
+%     plot(temp(:,i))
+% end
+
+
+% figure
+% for i = 1:5
+% nexttile
+% plot(BL(:,i))
+% end
